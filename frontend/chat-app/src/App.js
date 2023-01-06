@@ -6,9 +6,8 @@ import { customAlphabet } from "nanoid";
 const socket = io("http://localhost:5001");
 
 const nanoid = customAlphabet("1234567890abcdef", 6);
-const uid = nanoid();
-
-let date = new Date().toLocaleTimeString().slice(0, 5);
+// const uid = nanoid();
+const uid = prompt('Please enter your name');
 
 function App() {
   const [Message, setMessage] = useState("");
@@ -23,6 +22,7 @@ function App() {
   const sendChat = (e) => {
     e.preventDefault();
     console.log("working");
+    let date = new Date().toLocaleTimeString().slice(0, 5);
     socket.emit("chat", { Message, uid, date });
     setMessage("");
   };
